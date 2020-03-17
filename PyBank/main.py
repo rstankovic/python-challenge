@@ -14,9 +14,9 @@ Greatest Decrease in Profits: Sep-2013 ($-2196167)
 
 csv_path = os.path.join("..","Resources","budget_data.csv")
 with open(csv_path,'r') as csv_file:
-    header = next(csv_file)
-    txt_path = os.path.join("..","Resources","final_text.txt")
+    txt_path = os.path.join("..","Resources","final_bank_text.txt")
     csv_reader = csv.reader(csv_file, delimiter = ',')
+    header = next(csv_reader)
     with open (txt_path,'w') as txt_file:
         totalMonths = 0 #The total number of months included in the dataset
         totalOfTransactions = 0 #The net total amount of "Profit/Losses" over the entire period
@@ -38,14 +38,14 @@ with open(csv_path,'r') as csv_file:
                 monthOfLoss = monthYear
         averageProfitLoss = totalOfTransactions / totalMonths
         #now to write the values into the text file
-        txt_file.write("Financial Analysis\n----------------------------\n")
-        txt_file.write(f"Total Months: {totalMonths}\nTotal: ${totalOfTransactions}\n")
-        txt_file.write(f"Average Change: ${averageProfitLoss}\n")
-        txt_file.write(f"Greatest Increase in Profits: {monthOfGain} {greatestGain}\n")
+        txt_file.write("Financial Analysis\n----------------------------")
+        txt_file.write(f"Total Months: {totalMonths}\nTotal: ${totalOfTransactions}")
+        txt_file.write(f"Average Change: ${averageProfitLoss}")
+        txt_file.write(f"Greatest Increase in Profits: {monthOfGain} {greatestGain}")
         txt_file.write(f"Greatest Decrease in Profits: {monthOfLoss} {greatestLoss}\n")
         #now, finally, print to terminal
         print("Financial Analysis\n----------------------------\n")
-        print(f"Total Months: {totalMonths}\nTotal: ${totalOfTransactions}\n")
-        print(f"Average Change: ${averageProfitLoss}\n")
-        print(f"Greatest Increase in Profits: {monthOfGain} {greatestGain}\n")
+        print(f"Total Months: {totalMonths}\nTotal: ${totalOfTransactions}")
+        print(f"Average Change: ${averageProfitLoss}")
+        print(f"Greatest Increase in Profits: {monthOfGain} {greatestGain}")
         print(f"Greatest Decrease in Profits: {monthOfLoss} {greatestLoss}\n")
