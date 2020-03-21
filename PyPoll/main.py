@@ -36,10 +36,10 @@ with open(csv_path,'r') as csv_file:
                 liCount += 1
             elif candidate == "O'Tooley":
                 oTooleyCount += 1
-        khanPercent = '%.2f' % float(khanCount / totalVotes*100)
-        correyPercent = float(correyCount / totalVotes*100)
-        liPercent = float(liCount / totalVotes*100)
-        oTooleyPercent = float(oTooleyCount / totalVotes*100)
+        khanPercent = round(float(khanCount / totalVotes*100),4)
+        correyPercent = round(float(correyCount / totalVotes*100),4)
+        liPercent = round(float(liCount / totalVotes*100),4)
+        oTooleyPercent = round(float(oTooleyCount / totalVotes*100),4)
         percentDict = {"Khan":khanPercent,"Correy":correyPercent,"Li":liPercent,"O'Tooley":oTooleyPercent} #see comment below for explanation of this dict
         winner = max(percentDict.items(),key = operator.itemgetter(1))[0] #didnt want to write a loop/big if statement to find max so did this instead
         #now print to terminal
