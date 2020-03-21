@@ -17,10 +17,11 @@ Winner: Khan
 '''
 csv_path = os.path.join("..","Resources","election_data.csv")
 with open(csv_path,'r') as csv_file:
+    txt_path = os.path.join("..","Resources","final_poll_text.txt")
     csv_reader = csv.reader(csv_file,delimiter = ',')
     header = next(csv_reader)
-    with open("final_poll_text.txt",'w') as txt_file:
-        totalVotes,khanCount,khanPercent,correyCount,correyPercent,liCount,liPercent,oTooleyCount,oTooleyPercent = 0
+    with open(txt_path,'w') as txt_file:
+        totalVotes = khanCount = khanPercent = correyCount = correyPercent = liCount = liPercent = oTooleyCount = oTooleyPercent = 0
         winner = ""
         for row in csv_reader:
             voterID = int(row[0])
@@ -35,11 +36,11 @@ with open(csv_path,'r') as csv_file:
                 liCount += 1
             elif candidate == "O'Tooley":
                 oTooleyCount += 1
-        khanPercent = float(khanCount / totalVotes)
-        correyPercent = float(correyCount / totalVotes)
-        liPercent = float(liCount / totalVotes)
-        oTooleyPercent = float(oTooleyCount / totalVotes)
-        percentDict = {"Khan":khanPercent,"Correy":correyPercent,"Li":liPercent,"O'Tooley":oTooleyPercent}
+        khanPercent = '%.2f' % float(khanCount / totalVotes*100)
+        correyPercent = float(correyCount / totalVotes*100)
+        liPercent = float(liCount / totalVotes*100)
+        oTooleyPercent = float(oTooleyCount / totalVotes*100)
+        percentDict = {"Khan":khanPercent,"Correy":correyPercent,"Li":liPercent,"O'Tooley":oTooleyPercent} #see comment below for explanation of this dict
         winner = max(percentDict.items(),key = operator.itemgetter(1))[0] #didnt want to write a loop/big if statement to find max so did this instead
         #now print to terminal
         print("Election Results")
@@ -53,4 +54,10 @@ with open(csv_path,'r') as csv_file:
         print("-------------------------")
         print(f"Winner: {winner}")
         print("-------------------------")
+        txt_file.write("Election Results\n-------------------------\n")
+        txt_file.write(f"Total Votes: {totalVotes}\n-------------------------\n")
+        txt_file.write(f"Khan: {khanPercent}% {khanCount}\nCorrey: {correyPercent}% {khanCount}\n")
+        txt_file.write(f"Li: {liPercent}% {liCount}\nO'Tooley: {oTooleyPercent}% {oTooleyCount}\n")
+        txt_file.write(f"-------------------------\nWinner: {winner}\n-------------------------\n")
+
         

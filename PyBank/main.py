@@ -38,10 +38,10 @@ with open(csv_path,'r') as csv_file:
                 monthOfLoss = monthYear
         averageProfitLoss = totalOfTransactions / totalMonths
         #now to write the values into the text file
-        txt_file.write("Financial Analysis\n----------------------------")
-        txt_file.write(f"Total Months: {totalMonths}\nTotal: ${totalOfTransactions}")
-        txt_file.write(f"Average Change: ${averageProfitLoss}")
-        txt_file.write(f"Greatest Increase in Profits: {monthOfGain} {greatestGain}")
+        txt_file.write("Financial Analysis\n----------------------------\n")
+        txt_file.write(f"Total Months: {totalMonths}\nTotal: ${totalOfTransactions}\n")
+        txt_file.write(f"Average Change: ${averageProfitLoss}\n")
+        txt_file.write(f"Greatest Increase in Profits: {monthOfGain} {greatestGain}\n")
         txt_file.write(f"Greatest Decrease in Profits: {monthOfLoss} {greatestLoss}\n")
         #now, finally, print to terminal
         print("Financial Analysis\n----------------------------\n")
